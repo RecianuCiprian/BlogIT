@@ -1,7 +1,17 @@
 // Set up your application entry point here...
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-const App = <div> test </div>;
+import index from "./index.css";
+import LoginPage from "./components/login/LoginPage";
+
+class App extends Component {
+    render() {
+        return (
+            <LoginPage/>
+        );
+    }
+}
+
 
 ReactDOM.render(<App />, document.getElementById('app'));
