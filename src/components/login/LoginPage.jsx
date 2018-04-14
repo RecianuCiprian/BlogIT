@@ -2,16 +2,19 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import styleable from 'react-styleable';
 import css from './login.css';
+import LeftForm from "./LeftForm";
 
 class LoginPage extends Component {
     constructor(props){
         super(props);
-        console.log(this.props);
     }
 
     render() {
         return (
-            <div className={this.props.css['center-div']} ></div>
+            <div className={this.props.css['center-div']} >
+                <LeftForm/>
+                {/*<Logo/>*/}
+            </div>
         );
     }
 }
