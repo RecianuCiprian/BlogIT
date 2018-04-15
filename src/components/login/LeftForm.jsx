@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './login.css';
 import styleable from "react-styleable";
-import Input from "../../reusableComponents/Input";
+import Input from "../common/Input";
 import PropTypes from "prop-types";
 
 const {object, func} = PropTypes;
