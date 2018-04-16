@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import styleable from 'react-styleable';
 import css from './login.css';
 import LeftForm from "./LeftForm";
+import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {userActions} from '../../actions'
 
 class LoginPage extends Component {
     constructor(props) {
@@ -18,6 +21,7 @@ class LoginPage extends Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
+        this.props.actions.login("cipirna","ciprian");
     };
 
     handleChange = (e) =>{
@@ -26,6 +30,7 @@ class LoginPage extends Component {
     };
 
     render() {
+        console.log(this.props.authentication);
         return (
             <div className={this.props.css['center-div']}>
                 <LeftForm handleChange={this.handleChange} submitForm={this.submitForm} value = {this.state}/>
@@ -35,4 +40,20 @@ class LoginPage extends Component {
     }
 }
 
-export default styleable(css)(LoginPage);
+function mapStateToProps(state) {
+    const { authentication } = state;
+    return {
+        authentication
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(userActions,dispatch)
+    };
+}
+
+
+const connectedLoginPage = connect(mapStateToProps,mapDispatchToProps)(LoginPage);
+
+export default styleable(css)(connectedLoginPage);

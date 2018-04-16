@@ -16,9 +16,8 @@ class App extends Component {
     }
 }
 
-
 ReactDOM.render(
-    <Provider store={configStore}>
+    <Provider store={configStore()}>
         <App />
     </Provider>,
     document.getElementById('app')

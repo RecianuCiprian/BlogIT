@@ -1,9 +1,13 @@
 import {userConstants} from "../actions/LoginTypes";
 
-export default function LoginReducers(state,action){
-    switch (action.type){
+const initialState = {};
+
+export default function LoginReducers(state = initialState, action) {
+    switch (action.type) {
         case userConstants.LOGIN_SUCCESS:
-            return Object.assign({},action.user);
+            console.log(action);
+            const {user} = action;
+            return  user;
         default:
             return state;
     }
