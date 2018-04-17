@@ -13,7 +13,8 @@ class LoginPage extends Component {
         this.state = {
             username: '',
             password: '',
-            submitted: false
+            submitted: false,
+            errMessage:''
         };
     }
 
@@ -21,7 +22,16 @@ class LoginPage extends Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        this.props.actions.login("cipirna","ciprian");
+        const {username,password} = this.state;
+        if(username && password) {
+            this.props.actions.login(username, password);
+            // this.setState({
+            //     username:'',
+            //     password:'',
+            //     submitted:false,
+            //     errMessage:'User needs to be loged in'
+            // });
+        }
     };
 
     handleChange = (e) =>{
@@ -30,10 +40,13 @@ class LoginPage extends Component {
     };
 
     render() {
-        console.log(this.props.authentication);
         return (
             <div className={this.props.css['center-div']}>
-                <LeftForm handleChange={this.handleChange} submitForm={this.submitForm} value = {this.state}/>
+                <LeftForm
+                    handleChange={this.handleChange}
+                    submitForm={this.submitForm}
+                    value = {this.state}
+                />
                 {/*<Logo/>*/}
             </div>
         );

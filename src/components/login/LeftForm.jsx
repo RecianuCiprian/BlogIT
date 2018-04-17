@@ -9,9 +9,10 @@ const {object, func} = PropTypes;
 const err = " is required";
 
 const LeftForm = ({css, submitForm, handleChange, value}) => {
-    const {username, password, submitted} = value;
+    const {username, password, submitted,errMessage} = value;
     return (
         <div className={css['login-box']}>
+            {errMessage && errMessage}
             <h1 className={css['h1-center']}>Login</h1>
             <form name="form" onSubmit={submitForm} id="text-input-form">
                 <Input
@@ -38,7 +39,8 @@ const LeftForm = ({css, submitForm, handleChange, value}) => {
 LeftForm.propTypes = {
     handleChange: func.isRequired,
     submitForm: func.isRequired,
-    value: object.isRequired
+    value: object.isRequired,
+    css: object.isRequired
 };
 
 export default styleable(css)(LeftForm);

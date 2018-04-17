@@ -1,24 +1,20 @@
 // Set up your application entry point here...
-import React, {Component} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux'; //face bind la store in app
 import configStore from "./store/configureStore";
 
-import index from "./index.css";
+import App from "./components/App/App";
+import './index.css'
+import {ApolloProvider} from "react-apollo";
+import client from './constants/apolloClient'
 
-import LoginPage from "./components/login/LoginPage";
-
-class App extends Component {
-    render() {
-        return (
-            <LoginPage/>
-        );
-    }
-}
 
 ReactDOM.render(
-    <Provider store={configStore()}>
-        <App />
-    </Provider>,
+    <ApolloProvider client={client}>
+        <Provider store={configStore()}>
+            <App/>
+        </Provider>
+    </ApolloProvider>,
     document.getElementById('app')
 );

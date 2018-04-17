@@ -1,4 +1,6 @@
 import { userConstants } from './LoginTypes';
+import sessionApi from '../services/service'
+import {beginAjaxCall} from "./ajaxStatusActions";
 
 export const userActions = {
     login
@@ -6,10 +8,9 @@ export const userActions = {
 
 function login(username, password) {
     return dispatch => {
-        dispatch(success(username));
+        dispatch(beginAjaxCall(username));
     };
 
-    function request(user) { return { type: userConstants.LOGIN_REQUEST, user }; }
     function success(user) { return { type: userConstants.LOGIN_SUCCESS, user }; }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error }; }
 }
