@@ -2,9 +2,7 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Message from "./MessageErrInput";
 
-const {func, string} = PropTypes;
-
-const Input = ({css, fieldProp, labelText, plHolder, errors, value, handleChange,typeInput}) => {
+const Input = ({fieldProp, labelText, plHolder, errors, value, handleChange,typeInput}) => {
     return (
         <Fragment>
             <label htmlFor={fieldProp}>{labelText}</label>
@@ -20,13 +18,13 @@ const Input = ({css, fieldProp, labelText, plHolder, errors, value, handleChange
 };
 
 Input.propTypes = {
-    plHolder: string,
-    value: string.isRequired,
-    typeInput:string.isRequired,
-    handleChange: func.isRequired,
-    fieldProp: string.isRequired,
-    labelText: string.isRequired,
-    errors: string
+    plHolder: PropTypes.string,
+    value: PropTypes.string.isRequired,
+    typeInput:PropTypes.string.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    fieldProp: PropTypes.string.isRequired,
+    labelText: PropTypes.string.isRequired,
+    errors: PropTypes.string,
 };
 
 export default Input;

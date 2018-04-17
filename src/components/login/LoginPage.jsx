@@ -2,71 +2,82 @@ import React, {Component} from 'react';
 import styleable from 'react-styleable';
 import css from './login.css';
 import LeftForm from "./LeftForm";
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {userActions} from '../../actions'
+import {history} from '../../store/ConfigureStore';
+import PropTypes from "prop-types";
 
 class LoginPage extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            username: '',
+            email: '',
             password: '',
             submitted: false,
-            errMessage:''
+            errMessage: ''
         };
     }
 
     submitForm = (e) => {
         e.preventDefault();
 
-        this.setState({ submitted: true });
-        const {username,password} = this.state;
-        if(username && password) {
-            this.props.actions.login(username, password);
-            // this.setState({
-            //     username:'',
-            //     password:'',
-            //     submitted:false,
-            //     errMessage:'User needs to be loged in'
-            // });
+        this.setState({submitted: true});
+        const {email, password} = this.state;
+        if (email && password) {
+            this.props.actions.login(email, password).then(() => {
+                history.push('/');
+            }).catch((error) => {
+                debugger;
+                this.setState({
+                    email: '',
+                    password: '',
+                    submitted: false,
+                    errMessage: error
+                });
+            });
         }
     };
 
-    handleChange = (e) =>{
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
+    handleChange = (e) => {
+        const {name, value} = e.target;
+        this.setState({[name]: value});
     };
 
     render() {
         return (
             <div className={this.props.css['center-div']}>
-                <LeftForm
-                    handleChange={this.handleChange}
-                    submitForm={this.submitForm}
-                    value = {this.state}
-                />
+                    <LeftForm
+                        handleChange={this.handleChange}
+                        submitForm={this.submitForm}
+                        value={this.state}
+                    />
                 {/*<Logo/>*/}
             </div>
+
         );
     }
 }
 
+LoginPage.propTypes = {
+    actions: PropTypes.object.isRequired
+};
+
 function mapStateToProps(state) {
-    const { authentication } = state;
+    const {user} = state.authentication;
     return {
-        authentication
+        user
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(userActions,dispatch)
+        actions: bindActionCreators(userActions, dispatch)
     };
 }
 
 
-const connectedLoginPage = connect(mapStateToProps,mapDispatchToProps)(LoginPage);
+const connectedLoginPage = connect(mapStateToProps, mapDispatchToProps)(LoginPage);
 
 export default styleable(css)(connectedLoginPage);

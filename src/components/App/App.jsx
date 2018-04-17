@@ -1,13 +1,13 @@
 import React, {Component, Fragment} from 'react';
 import LoginPage from "../login/LoginPage";
-import {Router, Route, Switch} from 'react-router-dom';
-import {history} from '../../store/configureStore';
-import {PrivateRoute} from "../privateRoute/PrivateRoute";
+import {Route, Router, Switch} from 'react-router-dom';
+import {history} from '../../store/ConfigureStore';
+import PrivateRoute from '../privateRoute/PrivateRoute';
 import HomePage from "../HomePage/HomePage";
-import LoadingDots from "../common/LoadingDots";
-
-
-import ToDoApp from './ToDoApp';
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
+import BlockUi from "../../helpers/BlockUI";
+import {Loader} from "react-loaders";
 
 class App extends Component {
 
@@ -16,21 +16,31 @@ class App extends Component {
     }
 
     render() {
+        const {loading} = this.props;
         return (
-            <Fragment>
-                <LoadingDots interval={100} dots={20}/>
-                <ToDoApp/>
-                <Router history={history}>
-                    < Switch >
-                        <PrivateRoute exact path="/" component={HomePage} />
-                        <Route path="/login" component={LoginPage}/>
-                    </Switch>
-                </Router>
-            </Fragment>
+            <BlockUi blocking={loading} loader={<Loader active type={'ball-spin-fade-loader'} color="#02a17c"/> }>
+                <Fragment>
+                    <Router history={history}>
+                            <Switch>
+                                <PrivateRoute exact path="/" component={HomePage}/>
+                                <Route path="/login" component={LoginPage}/>
+                            </Switch>
+                    </Router>
+
+                </Fragment>
+            </BlockUi>
         );
     }
 }
 
+App.propTypes = {
+    loading: PropTypes.bool.isRequired
+};
 
+function mapStateToProps(state) {
+    return {
+        loading: state.ajaxCallsInProgress > 0
+    };
+}
 
-export default App;
+export default connect(mapStateToProps)(App);

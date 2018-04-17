@@ -1,0 +1,10 @@
+query userInfo($id : JSON!) {
+    users(filters:$id) {
+        _id
+        username
+        firstname
+        lastname
+        email
+        groupIds
+    }
+}

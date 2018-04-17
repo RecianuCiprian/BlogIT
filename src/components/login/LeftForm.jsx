@@ -9,19 +9,19 @@ const {object, func} = PropTypes;
 const err = " is required";
 
 const LeftForm = ({css, submitForm, handleChange, value}) => {
-    const {username, password, submitted,errMessage} = value;
+    const {email, password, submitted,errMessage} = value;
     return (
         <div className={css['login-box']}>
             {errMessage && errMessage}
             <h1 className={css['h1-center']}>Login</h1>
             <form name="form" onSubmit={submitForm} id="text-input-form">
                 <Input
-                    fieldProp={"username"}
-                    labelText={"Username"}
-                    typeInput={"text"}
-                    value={username}
+                    fieldProp={"email"}
+                    labelText={"Email"}
+                    typeInput={"email"}
+                    value={email}
                     handleChange={handleChange}
-                    errors={submitted && !username ? "Username" + err : null}/>
+                    errors={submitted && !email ? "Username" + err : null}/>
                 <Input
                     fieldProp={"password"}
                     labelText={"Password"}
