@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import LoginPage from "../login/LoginPage";
 import {Route, Router, Switch} from 'react-router-dom';
 import {history} from '../../store/ConfigureStore';
@@ -6,8 +6,10 @@ import PrivateRoute from '../privateRoute/PrivateRoute';
 import HomePage from "../homePage/HomePage";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import BlockUi from "../../helpers/BlockUI";
-import {Loader} from "react-loaders";
+import BlockUi from 'react-block-ui';
+import { Loader } from 'react-loaders';
+import './blockUI.css';
+import 'loaders.css/loaders.min.css';
 
 class App extends Component {
 
@@ -19,15 +21,12 @@ class App extends Component {
         const {loading} = this.props;
         return (
             <BlockUi blocking={loading} loader={<Loader active type={'ball-spin-fade-loader'} color="#02a17c"/> }>
-                <Fragment>
                     <Router history={history}>
                             <Switch>
                                 <PrivateRoute exact path="/" component={HomePage}/>
                                 <Route path="/login" component={LoginPage}/>
                             </Switch>
                     </Router>
-
-                </Fragment>
             </BlockUi>
         );
     }

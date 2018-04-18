@@ -102,6 +102,20 @@ export default {
                         loader: 'css-loader',
                         options: {
                             modules: true,
+                            localIdentName: '[local]',
+                            sourceMap: true
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.scss?$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
                             localIdentName: '[path][name]__[local]--[hash:base64:5]',
                             sourceMap: true
                         }

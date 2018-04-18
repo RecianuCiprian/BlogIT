@@ -5,14 +5,13 @@
     width: 50%;
     height: 70%;
     transform: translate(-50%, -50%);
-    background-attachment: fixed;
+    background: rgba(0, 0, 0, 0.5) fixed;
+    color: #fff;
 }
 
 .login-box {
     width: 50%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
     top: 0;
     left: 0;
     position: absolute;
@@ -21,6 +20,7 @@
     box-sizing: border-box;
     float: left;
     padding: 70px 30px;
+    border-right:1px #fff solid;
 }
 
 .h1-center {

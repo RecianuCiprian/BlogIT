@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import styleable from 'react-styleable';
-import css from './login.css';
+import css from './login.scss';
 import LeftForm from "./LeftForm";
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {userActions} from '../../actions'
 import {history} from '../../store/ConfigureStore';
 import PropTypes from "prop-types";
+import toastr from 'toastr';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -29,12 +30,11 @@ class LoginPage extends Component {
             this.props.actions.login(email, password).then(() => {
                 history.push('/');
             }).catch((error) => {
-                debugger;
+                toastr.error(error);
                 this.setState({
                     email: '',
                     password: '',
                     submitted: false,
-                    errMessage: error
                 });
             });
         }

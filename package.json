@@ -30,7 +30,8 @@
     "react-styleable": "3.3.0",
     "redux": "3.7.2",
     "redux-graphql-middleware": "0.1.5",
-    "redux-thunk": "2.2.0"
+    "redux-thunk": "2.2.0",
+    "toastr": "2.1.4"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",

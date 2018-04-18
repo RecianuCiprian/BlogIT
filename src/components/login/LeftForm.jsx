@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './login.css';
+import css from './login.scss';
 import styleable from "react-styleable";
 import Input from "../common/Input";
 import PropTypes from "prop-types";
@@ -9,10 +9,9 @@ const {object, func} = PropTypes;
 const err = " is required";
 
 const LeftForm = ({css, submitForm, handleChange, value}) => {
-    const {email, password, submitted,errMessage} = value;
+    const {email, password, submitted} = value;
     return (
         <div className={css['login-box']}>
-            {errMessage && errMessage}
             <h1 className={css['h1-center']}>Login</h1>
             <form name="form" onSubmit={submitForm} id="text-input-form">
                 <Input
