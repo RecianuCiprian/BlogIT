@@ -3,7 +3,7 @@ import LoginPage from "../login/LoginPage";
 import {Route, Router, Switch} from 'react-router-dom';
 import {history} from '../../store/ConfigureStore';
 import PrivateRoute from '../privateRoute/PrivateRoute';
-import HomePage from "../HomePage/HomePage";
+import HomePage from "../homePage/HomePage";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import BlockUi from "../../helpers/BlockUI";
