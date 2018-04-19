@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'; //face bind la store in app
 import configStore from "./store/ConfigureStore";
 
 import App from "./components/app/App";
-import './index.scss'
+import './index.css'
 import '../node_modules/toastr/build/toastr.min.css'
 import {ApolloProvider} from "react-apollo";
 import client from './config/ApolloClient'

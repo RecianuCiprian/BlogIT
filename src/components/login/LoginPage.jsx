@@ -9,6 +9,8 @@ import {history} from '../../store/ConfigureStore';
 import PropTypes from "prop-types";
 import toastr from 'toastr';
 
+
+
 class LoginPage extends Component {
     constructor(props) {
         super(props);
@@ -19,6 +21,9 @@ class LoginPage extends Component {
             submitted: false,
             errMessage: ''
         };
+    }
+    componentDidMount(){
+        document.body.classList= this.props.css['bg'];
     }
 
     submitForm = (e) => {
@@ -47,15 +52,14 @@ class LoginPage extends Component {
 
     render() {
         return (
-            <div className={this.props.css['center-div']}>
+                <div className={this.props.css['center-div']}>
                     <LeftForm
                         handleChange={this.handleChange}
                         submitForm={this.submitForm}
                         value={this.state}
                     />
-                {/*<Logo/>*/}
-            </div>
-
+                    {/*<Logo/>*/}
+                </div>
         );
     }
 }

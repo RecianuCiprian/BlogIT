@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import css from './style.scss';
+import styleable from 'react-styleable';
 
 class HomePage extends Component {
+
+    componentDidMount(){
+        document.body.classList= this.props.css['bg'];
+    }
+
     render() {
         return (
             <div>Home is Here</div>
@@ -12,4 +19,4 @@ class HomePage extends Component {
 HomePage.propTypes = {};
 HomePage.defaultProps = {};
 
-export default HomePage;
+export default styleable(css)(HomePage);
