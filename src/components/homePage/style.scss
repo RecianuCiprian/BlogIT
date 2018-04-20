@@ -1,4 +1,26 @@
+*{
+  margin:0;
+  padding: 0;
+}
+
 .bg {
-  background: seashell;
+  background: #d2d6d4;
   background-size: cover;
+}
+
+.nav{
+  opacity: 1;
+  background-color:white;
+  height: 5vh;
+  border-bottom: solid 4px dodgerblue;
+}
+
+.display-bar-1{
+  position: absolute;
+  background-color: deepskyblue;
+  margin-top:20px;
+  left: 50%;
+  width: 90%;
+  height: auto;
+  transform: translate(-50%);
 }

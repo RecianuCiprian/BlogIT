@@ -1,17 +1,20 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {Component, Fragment} from 'react';
 import css from './style.scss';
 import styleable from 'react-styleable';
+import NavBar from "./NavBar";
 
 class HomePage extends Component {
 
-    componentDidMount(){
-        document.body.classList= this.props.css['bg'];
+    componentDidMount() {
+        document.body.classList = this.props.css['bg'];
     }
 
     render() {
         return (
-            <div>Home is Here</div>
+            <div className={this.props.css['wrapper']}>
+                <NavBar/>
+                <div className={this.props.css['display-bar-1']}>Home is Here</div>
+            </div>
         );
     }
 }
