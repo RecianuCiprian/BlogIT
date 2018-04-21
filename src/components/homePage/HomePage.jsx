@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import css from './style.scss';
 import styleable from 'react-styleable';
-import NavBar from "./NavBar";
+import NavBar from "../navigation/NavBar";
 
 class HomePage extends Component {
 
@@ -11,10 +11,10 @@ class HomePage extends Component {
 
     render() {
         return (
-            <div className={this.props.css['wrapper']}>
+            <Fragment>
                 <NavBar/>
                 <div className={this.props.css['display-bar-1']}>Home is Here</div>
-            </div>
+            </Fragment>
         );
     }
 }
