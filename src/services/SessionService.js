@@ -17,7 +17,7 @@ function login(email) {
             }
         }).then(result => {
             if(result.data.users.length === 0){
-                reject("Invalid email adress");
+                reject("Invalid email address");
             }else{
                 users.push(result.data.users[0]._id);
                 localStorage.setItem('user', JSON.stringify(users));

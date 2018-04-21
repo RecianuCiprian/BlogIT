@@ -34,6 +34,7 @@ class LoginPage extends Component {
         if (email && password) {
             this.props.actions.login(email, password).then(() => {
                 history.push('/');
+                toastr.success("You are logged in");
             }).catch((error) => {
                 toastr.error(error);
                 this.setState({
