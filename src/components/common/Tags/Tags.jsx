@@ -19,7 +19,7 @@ function SelectSizesDemo(props) {
 
     return (
         <Fragment>
-            <h6 style={{fontSize: '15px', marginRight: 8, display: 'inline',paddingTop:'5px'}}>Tags:</h6>
+            <h6 style={{fontSize: '12px', marginRight: 8, display: 'inline',paddingTop:'5px'}}>Tags:</h6>
             <Select
                 mode="multiple"
                 size={"default"}

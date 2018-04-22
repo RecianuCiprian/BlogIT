@@ -1,0 +1,21 @@
+query getHeader{
+    posts(options:{limit:5}){
+        _id
+        title
+        description
+        createdAt
+        user{
+            firstname
+            lastname
+        }
+        tags{
+            _id
+            name
+        }
+        comments{
+            _id
+            text
+            userId
+        }
+    }
+}

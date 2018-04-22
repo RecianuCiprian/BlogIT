@@ -1,5 +1,5 @@
 import client from '../config/ApolloClient';
-import {userInfo} from '../constants/querys/users.graphql';
+import {userInfo} from '../querys/users.graphql';
 let users = JSON.parse(localStorage.getItem('user')) || [];
 
 export const sessionService = {

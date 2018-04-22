@@ -1,21 +1,17 @@
-.display-bar-1{
-  position: absolute;
+.container-inside{
   background-color: white;
-  margin-top:20px;
-  left: 50%;
-  width: 90%;
-  height: auto;
   min-height: 100px;
-  transform: translate(-50%);
+  height: auto;
+  padding-top: 5px;
 }
 
 .div-container{
   margin-left:50px;
   margin-top:20px;
   width:90%;
+  height: auto;
   padding-bottom: 16px;
-  margin-bottom: 16px;
-  display: flex;
+  margin-bottom: 16px;;
 }
 
 .bottom-lines{

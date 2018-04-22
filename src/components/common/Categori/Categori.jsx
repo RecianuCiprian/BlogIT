@@ -6,7 +6,7 @@ const CheckableTag = Tag.CheckableTag;
 
 const tagsFromServer = ['Movies', 'Books', 'Music', 'Sports'];
 
-class Categori extends Component {
+class Category extends Component {
     state = {
         selectedTags: [],
     };
@@ -24,7 +24,7 @@ class Categori extends Component {
         const {selectedTags} = this.state;
         return (
             <Fragment>
-                <h6 style={{fontSize: '15px', marginRight: 8, display: 'inline'}}>Categories:</h6>
+                <h6 style={{fontSize: '12px', marginRight: 8, display: 'inline'}}>Categories:</h6>
                 {tagsFromServer.map(tag => (
                     <CheckableTag
                         key={tag}
@@ -39,4 +39,4 @@ class Categori extends Component {
     }
 }
 
-export {Categori as Posts};
+export {Category as Category};

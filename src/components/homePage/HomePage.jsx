@@ -1,8 +1,10 @@
 import React, {Component, Fragment} from 'react';
+import style from 'react-styleable';
 import css from './style.scss';
-import styleable from 'react-styleable';
 import NavBar from "../navigation/NavBar";
-import ManageSearcyPage from "../PageSearcy/ManageSearcyPage";
+import ManageSearcyPage from "../pageSearcy/ManageSearcyPage";
+import ArticleManagement from "../articleContent/ArticleManagement";
+import PropTypes from 'prop-types';
 
 class HomePage extends Component {
 
@@ -14,13 +16,17 @@ class HomePage extends Component {
         return (
             <Fragment>
                 <NavBar/>
-                <ManageSearcyPage/>
+                <div className={this.props.css['container']}>
+                    <ManageSearcyPage/>
+                    <ArticleManagement/>
+                </div>
             </Fragment>
         );
     }
 }
 
-HomePage.propTypes = {};
-HomePage.defaultProps = {};
+HomePage.propTypes = {
+    css: PropTypes.object.isRequired
+};
 
-export default styleable(css)(HomePage);
+export default style(css)(HomePage);

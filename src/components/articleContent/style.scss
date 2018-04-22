@@ -1,0 +1,15 @@
+@import "../common/style";
+
+.bottom-lines{
+  composes: div-container;
+  border-bottom: 3px double #e8e8e8;
+}
+
+.description{
+  text-align: justify;
+  margin-top:15px;
+}
+
+.footer{
+  margin-bottom: 10px;
+}
