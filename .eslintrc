@@ -8,10 +8,10 @@
   "plugins": [
     "react"
   ],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
-    "parser": "babel-eslint",
     "ecmaFeatures": {
       "jsx": true
     }
@@ -66,7 +66,6 @@
     "react/jsx-indent-props": 0,
     "react/jsx-key": 1,
     "react/jsx-max-props-per-line": 0,
-    "react/jsx-no-bind": 1,
     "react/jsx-no-duplicate-props": 1,
     "react/jsx-no-literals": 0,
     "react/jsx-no-undef": 1,
@@ -87,7 +86,15 @@
     "react/prop-types": 1,
     "react/react-in-jsx-scope": 1,
     "react/self-closing-comp": 1,
-    "react/sort-comp": 1
+    "react/sort-comp": 1,
+    "react/jsx-no-bind": [
+      2,
+      {
+        "ignoreRefs": false,
+        "allowArrowFunctions": true,
+        "allowBind": false
+      }
+    ]
   },
   "settings": {
     "import/resolver": {

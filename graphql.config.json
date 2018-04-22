@@ -25,8 +25,9 @@
   "README_endpoints": "A list of GraphQL endpoints that can be queried from '.graphql' files in the IDE",
   "endpoints" : [
     {
-      "name": "Default (http://fiipractic-react.cultofcoders.com/graphql)",
+      "name": "Cult of Coders",
       "url": "http://fiipractic-react.cultofcoders.com/graphql",
+      "README_options" : "See http://fiipractic-react.cultofcoders.com/visualise.html for visualization",
       "options" : {
         "headers": {
           "user-agent" : "JS GraphQL"

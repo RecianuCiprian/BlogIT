@@ -17,6 +17,5 @@ function Logout(props) {
 Logout.propTypes = {
     css:PropTypes.object.isRequired
 };
-Logout.defaultProps = {};
 
 export default Logout;

@@ -1,0 +1,25 @@
+.display-bar-1{
+  position: absolute;
+  background-color: white;
+  margin-top:20px;
+  left: 50%;
+  width: 90%;
+  height: auto;
+  min-height: 100px;
+  transform: translate(-50%);
+}
+
+.div-container{
+  margin-left:50px;
+  margin-top:20px;
+  width:90%;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  display: flex;
+}
+
+.bottom-lines{
+  composes: div-container;
+  border-bottom: 1px dashed #e8e8e8;
+}
+

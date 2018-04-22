@@ -140,6 +140,10 @@ export default {
                 test: /\.(graphql|gql)$/,
                 exclude: /node_modules/,
                 loader: 'graphql-tag/loader',
+            },
+            {
+                test: /\.less$/,
+                // compiles Less to CSS
             }
         ]
     }

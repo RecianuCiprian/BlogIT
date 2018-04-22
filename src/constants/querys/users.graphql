@@ -8,3 +8,14 @@ query userInfo($id : JSON!) {
         groupIds
     }
 }
+
+query allUsers {
+    users {
+        _id
+        username
+        firstname
+        lastname
+        email
+        groupIds
+    }
+}

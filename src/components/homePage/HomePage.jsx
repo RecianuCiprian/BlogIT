@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import css from './style.scss';
 import styleable from 'react-styleable';
 import NavBar from "../navigation/NavBar";
+import ManageSearcyPage from "../PageSearcy/ManageSearcyPage";
 
 class HomePage extends Component {
 
@@ -13,7 +14,7 @@ class HomePage extends Component {
         return (
             <Fragment>
                 <NavBar/>
-                <div className={this.props.css['display-bar-1']}>Home is Here</div>
+                <ManageSearcyPage/>
             </Fragment>
         );
     }
