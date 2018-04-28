@@ -23,6 +23,7 @@ function Article(props) {
             <Footer
                 divCss={css['footer']}
                 comments={post.comments}
+                postId={post._id}
             />
         </div>
     );

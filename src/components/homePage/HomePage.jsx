@@ -18,7 +18,9 @@ class HomePage extends Component {
                 <NavBar/>
                 <div className={this.props.css['container']}>
                     <ManageSearcyPage/>
-                    <ArticleManagement/>
+                    <div style={{position:'relative'}}>
+                        <ArticleManagement/>
+                    </div>
                 </div>
             </Fragment>
         );

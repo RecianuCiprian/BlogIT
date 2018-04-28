@@ -5,6 +5,7 @@ import {getHeader} from "../../querys/article.graphql";
 import Article from "./Article";
 import style from 'react-styleable';
 import css from './style.scss';
+import CoolBlockUi from "../common/CoolBlockUi";
 
 class ArticleManagement extends Component {
 
@@ -13,7 +14,7 @@ class ArticleManagement extends Component {
             <div className={css['container-inside']}>
                 <Query query={getHeader}>
                     {({loading, error, data}) => {
-                        if (loading) return "Loading...";
+                        if (loading) return <CoolBlockUi loading={loading}/>;
                         if (error) return `Error! ${error.message}`;
 
                         return data.posts.map(post => (
@@ -22,7 +23,6 @@ class ArticleManagement extends Component {
                                 post={post}
                                 />
                         ));
-
                     }}
                 </Query>
             </div>

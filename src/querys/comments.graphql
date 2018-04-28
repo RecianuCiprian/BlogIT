@@ -1,0 +1,11 @@
+query getAllCommentByPost($post: JSON!){
+    comments(filters:$post){
+        _id
+        createdAt
+        text
+        user{
+            firstname
+            lastname
+        }
+    }
+}
