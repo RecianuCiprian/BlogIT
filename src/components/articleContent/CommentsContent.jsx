@@ -19,10 +19,10 @@ function CommentsContent(props) {
         <div style={{position: 'relative'}}>
 
             <Query query={getAllCommentByPost} variables={variable}>
-                {({loading, error, data}) => {
+                {({loading, error, data, refetch}) => {
                     if (loading) return <CoolBlockUi loading={loading}/>;
                     if (error) return `Error! ${error.message}`;
-
+                    props.refresh && refetch();
                     return data.comments.map(comment => (
                         <div key={comment._id} className={css['commnets-container']}>
                             <Contact style={userIcon}/>
@@ -43,7 +43,8 @@ function CommentsContent(props) {
 
 CommentsContent.propTypes = {
     postId: PropTypes.string.isRequired,
-    css:PropTypes.object.isRequired
+    css: PropTypes.object.isRequired,
+    refresh:PropTypes.bool
 };
 
 const userIcon = {

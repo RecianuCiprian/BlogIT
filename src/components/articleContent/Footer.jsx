@@ -9,6 +9,9 @@ import {Collapse} from 'antd';
 import '../common/styles/antCollapse.css';
 import CommentsContent from "./CommentsContent";
 import AddCommentContainer from "./AddCommentContainer";
+import {Mutation} from "react-apollo";
+import {addComment} from '../../querys/comments.graphql';
+import {connect} from "react-redux";
 
 const Panel = Collapse.Panel;
 
@@ -16,21 +19,38 @@ class Footer extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            value: '',
+            refresh: false
+        };
     }
 
-    handleChange = () => {
-        console.log('Handle change');
+    handleChange = (e) => {
+        this.setState({value: e.target.value});
     };
 
-    onClick = () => {
-        console.log('On click');
+    onSubmit = (addComment, e) => {
+        if(this.state.refresh && e.key.toLowerCase() !== 'enter'){
+            this.setState({refresh:false});
+        }
+
+        if (e.key.toLowerCase() === 'enter') {
+            let CommentCreateInput = {
+                "text": this.state.value,
+                "userId": this.props.user._id,
+                "postId": this.props.postId
+            };
+            addComment({variables: {data: CommentCreateInput}});
+            this.setState({value: '', refresh: true});
+        }
+
     };
 
     render() {
         const {css, divCss, comments, postId} = this.props;
-        const styleContainer={
-            div:css['add-comment'],
-            input:css['add-comment-input']
+        const styleContainer = {
+            div: css['add-comment'],
+            input: css['add-comment-input']
         };
 
         return (
@@ -42,10 +62,13 @@ class Footer extends Component {
                     192 |
                 </div>
 
+
                 <div className={css['footer-like']}>
                     <Like/>
                     127 |
                 </div>
+
+
                 <Collapse onChange={(key) => {
                     console.log(key);
                 }}>
@@ -55,9 +78,22 @@ class Footer extends Component {
                             {comments.length}
                         </div>
                     } key={postId}>
-                        <CommentsContent postId={postId}/>
+                        <CommentsContent postId={postId} refresh={this.state.refresh}/>
                     </Panel>
-                    <AddCommentContainer onClick={this.onClick} handleChange={this.handleChange} css={styleContainer}/>
+
+                    <Mutation mutation={addComment}>
+                        {(addComment, {data}) => (
+                            <AddCommentContainer
+                                // eslint-disable-next-line react/jsx-no-bind
+                                submit={this.onSubmit.bind(this, addComment)}
+                                handleChange={this.handleChange}
+                                css={styleContainer}
+                                value={this.state.value}
+                            />
+                        )}
+                    </Mutation>
+
+
                 </Collapse>
             </div>
         );
@@ -68,8 +104,17 @@ Footer.propTypes = {
     css: PropTypes.object.isRequired,
     divCss: PropTypes.string,
     comments: PropTypes.array.isRequired,
-    postId: PropTypes.string.isRequired
+    postId: PropTypes.string.isRequired,
+    user: PropTypes.object.isRequired
 };
-Footer.defaultProps = {};
 
-export default style(css)(Footer);
+function mapStateToProps(state) {
+    const {user} = state.authentication;
+    return {
+        user
+    };
+}
+
+const footerPage = connect(mapStateToProps)(Footer);
+
+export default style(css)(footerPage);

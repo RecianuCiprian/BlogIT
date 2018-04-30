@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function AddCommentContainer(props) {
-    const {css,placeholder,handleChange,onClick} = props;
+    const {css,placeholder,handleChange,submit,value} = props;
     return (
         <div className={css.div}>
             <input
@@ -10,8 +10,10 @@ function AddCommentContainer(props) {
                 placeholder={placeholder}
                 onChange={handleChange}
                 className={css.input}
+                onKeyPress={submit}
+                value={value}
             />
-            <button className={css.button} onClick={onClick}>Give it a trie</button>
+            {/*<button className={css.button} onClick={onClick}>Give it a trie</button>*/}
         </div>
     );
 }
@@ -20,7 +22,8 @@ AddCommentContainer.propTypes = {
     css:PropTypes.object,
     placeholder:PropTypes.string,
     handleChange:PropTypes.func.isRequired,
-    onClick:PropTypes.func.isRequired
+    submit:PropTypes.func.isRequired,
+    value:PropTypes.string.isRequired
 };
 
 export default AddCommentContainer;

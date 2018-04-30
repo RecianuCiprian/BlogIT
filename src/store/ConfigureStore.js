@@ -4,7 +4,14 @@ import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
 // 'routerMiddleware': the new way of storing route changes with redux middleware since rrV4.
 import {routerMiddleware} from 'react-router-redux';
+import {persistReducer, persistStore} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import rootReducer from '../reducers';
+
+const persistConfig = {
+    key: 'root',
+    storage,
+};
 
 export const history = createHistory();
 
@@ -23,10 +30,13 @@ function configureStoreDev(initialState) {
     ];
 
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
-    const store = createStore(rootReducer, initialState, composeEnhancers(
+    const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+    const store = createStore(persistedReducer, initialState, composeEnhancers(
         applyMiddleware(...middlewares)
         )
     );
+    const persistor = persistStore(store);
 
     if (module.hot) {
         // Enable Webpack hot module replacement for reducers
@@ -36,7 +46,7 @@ function configureStoreDev(initialState) {
         });
     }
 
-    return store;
+    return {store, persistor};
 }
 
 export default configureStoreDev;

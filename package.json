@@ -29,7 +29,9 @@
     "react-router-redux": "5.0.0-alpha.6",
     "react-styleable": "3.3.0",
     "redux": "3.7.2",
+    "redux-persist": "5.9.1",
     "redux-thunk": "2.2.0",
+    "save": "2.3.2",
     "toastr": "2.1.4"
   },
   "devDependencies": {
