@@ -80,10 +80,10 @@
   color: #fff;
 }
 .ant-tag-checkable-checked {
-  background-color: #1890ff;
+  background-color: #FF6500;
 }
 .ant-tag-checkable:active {
-  background-color: #096dd9;
+  background-color: #FF6500;
 }
 .ant-tag-close {
   width: 0 !important;

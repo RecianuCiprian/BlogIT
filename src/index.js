@@ -15,9 +15,10 @@ const configureStore = configStore();
 ReactDOM.render(
     <ApolloProvider client={client}>
         <Provider store={configureStore.store}>
-            <PersistGate loading={null} persistor={configureStore.persistor}>
+            <App/>
+           {/* <PersistGate loading={null} persistor={configureStore.persistor}>
                 <App/>
-            </PersistGate>
+            </PersistGate>*/}
         </Provider>
     </ApolloProvider>,
     document.getElementById('app')

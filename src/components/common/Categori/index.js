@@ -1,1 +1,1 @@
-export * from './Categori';
+export * from './Tags';

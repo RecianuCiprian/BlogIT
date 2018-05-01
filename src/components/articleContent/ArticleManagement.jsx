@@ -1,36 +1,28 @@
-import React, {Component} from 'react';
-// eslint-disable-next-line import/named
-import {Query} from "react-apollo/index";
-import {getHeader} from "../../querys/article.graphql";
+import React, {Component, Fragment} from 'react';
 import Article from "./Article";
-import style from 'react-styleable';
-import css from './style.scss';
-import CoolBlockUi from "../common/CoolBlockUi";
+import PropTypes from 'prop-types';
+
 
 class ArticleManagement extends Component {
 
     render() {
         return (
-            <div className={css['container-inside']}>
-                <Query query={getHeader}>
-                    {({loading, error, data}) => {
-                        if (loading) return <CoolBlockUi loading={loading}/>;
-                        if (error) return `Error! ${error.message}`;
-
-                        return data.posts.map(post => (
-                            <Article
-                                key={post._id}
-                                post={post}
-                                />
-                        ));
-                    }}
-                </Query>
-            </div>
+           <Fragment>
+                {this.props.entries.map(post => (
+                    <Article
+                        key={post._id}
+                        post={post}
+                    />
+                ))}
+                <button onClick={this.props.onLoadMore}>Load More</button>
+           </Fragment>
         );
     }
 }
 
-ArticleManagement.propTypes = {};
-ArticleManagement.defaultProps = {};
+ArticleManagement.propTypes = {
+    entries:PropTypes.array.isRequired,
+    onLoadMore:PropTypes.func.isRequired
+};
 
-export default style(css)(ArticleManagement);
+export default ArticleManagement;

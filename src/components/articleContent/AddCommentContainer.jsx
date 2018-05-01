@@ -13,7 +13,6 @@ function AddCommentContainer(props) {
                 onKeyPress={submit}
                 value={value}
             />
-            {/*<button className={css.button} onClick={onClick}>Give it a trie</button>*/}
         </div>
     );
 }

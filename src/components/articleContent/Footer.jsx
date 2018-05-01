@@ -30,16 +30,17 @@ class Footer extends Component {
     };
 
     onSubmit = (addComment, e) => {
-        if(this.state.refresh && e.key.toLowerCase() !== 'enter'){
-            this.setState({refresh:false});
+        if (this.state.refresh && e.key.toLowerCase() !== 'enter') {
+            this.setState({refresh: false});
         }
 
         if (e.key.toLowerCase() === 'enter') {
             let CommentCreateInput = {
                 "text": this.state.value,
-                "userId": this.props.user._id,
+                "userId": localStorage.getItem("user")[0],
                 "postId": this.props.postId
             };
+            console.info(CommentCreateInput);
             addComment({variables: {data: CommentCreateInput}});
             this.setState({value: '', refresh: true});
         }
@@ -56,10 +57,10 @@ class Footer extends Component {
         return (
             <div className={divCss}>
                 <div className={css['footer-start']}>
-                <span className={css['start']}>
-                    <Star/>
-                </span>
-                    192 |
+                    <span className={css['start']}>
+                        <Star/>
+                    </span>
+                        192 |
                 </div>
 
 
@@ -82,7 +83,7 @@ class Footer extends Component {
                     </Panel>
 
                     <Mutation mutation={addComment}>
-                        {(addComment, {data}) => (
+                        {(addComment) => (
                             <AddCommentContainer
                                 // eslint-disable-next-line react/jsx-no-bind
                                 submit={this.onSubmit.bind(this, addComment)}
@@ -105,16 +106,6 @@ Footer.propTypes = {
     divCss: PropTypes.string,
     comments: PropTypes.array.isRequired,
     postId: PropTypes.string.isRequired,
-    user: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
-    const {user} = state.authentication;
-    return {
-        user
-    };
-}
-
-const footerPage = connect(mapStateToProps)(Footer);
-
-export default style(css)(footerPage);
+export default style(css)(Footer);

@@ -1,3 +1,4 @@
+@import "../common/style";
 *{
   margin:0;
   padding: 0;
@@ -14,4 +15,9 @@
   left: 50%;
   width: 90%;
   transform: translate(-50%);
+}
+
+.container-articles{
+  composes: container-inside;
+  position: relative;
 }

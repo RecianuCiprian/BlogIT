@@ -14,6 +14,7 @@ function Article(props) {
             <Header
                 title={post.title}
                 tags={post.tags}
+                category={post.category}
             />
             <ArticleContent
                 description={post.description}

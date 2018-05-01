@@ -1,0 +1,10 @@
+query getDataForSearch{
+    postCategories{
+        _id
+       name
+    }
+    tags{
+        _id
+        name
+    }
+}

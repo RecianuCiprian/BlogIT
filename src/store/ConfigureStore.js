@@ -36,7 +36,7 @@ function configureStoreDev(initialState) {
         applyMiddleware(...middlewares)
         )
     );
-    const persistor = persistStore(store);
+    //const persistor = persistStore(store);
 
     if (module.hot) {
         // Enable Webpack hot module replacement for reducers
@@ -46,7 +46,7 @@ function configureStoreDev(initialState) {
         });
     }
 
-    return {store, persistor};
+    return {store};
 }
 
 export default configureStoreDev;

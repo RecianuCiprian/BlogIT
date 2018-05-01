@@ -1,9 +1,12 @@
 import client from '../config/ApolloClient';
 import {userInfo} from '../querys/users.graphql';
+import {getPosts} from '../querys/article.graphql';
+
 let users = JSON.parse(localStorage.getItem('user')) || [];
 
 export const sessionService = {
-    login
+    login,
+    getAllPosts
 };
 
 function login(email) {
@@ -23,6 +26,19 @@ function login(email) {
                 localStorage.setItem('user', JSON.stringify(users));
                 resolve({user:result.data.users[0]});
             }
+        }).catch(err => {
+            reject(err);
+        });
+    });
+}
+
+function getAllPosts(variables) {
+    return new Promise((resolve, reject) => {
+        client.query({
+            query: getPosts,
+            variables: variables
+        }).then(result => {
+            resolve(result.data);
         }).catch(err => {
             reject(err);
         });

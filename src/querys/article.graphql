@@ -1,14 +1,19 @@
-query getHeader{
-    posts(options:{limit:5}){
+query getPosts($dataFilter:JSON!,$dataOptions:JSON!){
+    posts(filters:$dataFilter,options:$dataOptions){
         _id
         title
         description
         createdAt
+        categoryId
         user{
             firstname
             lastname
         }
         tags{
+            _id
+            name
+        }
+        category{
             _id
             name
         }
@@ -19,3 +24,14 @@ query getHeader{
         }
     }
 }
+
+query test($dataFilter:JSON!,$dataOptions:JSON!){
+    posts(filters:$dataFilter,options:$dataOptions){
+        _id
+        title
+        userId
+        tagIds
+    }
+}
+
+

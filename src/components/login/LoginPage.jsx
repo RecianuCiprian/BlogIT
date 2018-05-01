@@ -4,7 +4,7 @@ import css from './login.scss';
 import LeftForm from "./LeftForm";
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {userActions} from '../../actions'
+import {userActions} from '../../actions';
 import {history} from '../../store/ConfigureStore';
 import PropTypes from "prop-types";
 import toastr from 'toastr';
