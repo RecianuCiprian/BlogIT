@@ -3,6 +3,8 @@ export default {
     ajaxCallsInProgress: 0,
     data: {
         posts: [],
+        postCategories:[],
+        tags:[],
         error:''
     }
 };

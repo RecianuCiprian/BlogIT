@@ -9,7 +9,6 @@ import ControllerContent from "./ControllerContent";
 
 
 function ManageSearchPage(props) {
-
     const {listOfTags, titleTag, tagsSelected} = props;
     const {listOfCategories, titleCategory} = props;
     const {titleDate} = props;
@@ -21,15 +20,24 @@ function ManageSearchPage(props) {
                 listOfItems={listOfCategories}
                 css={categoryStyle}
                 title={titleCategory}
+                headerStyle={comonStyle}
             />
             <Tags
                 listOfTags={listOfTags}
                 title={titleTag}
                 handleChangeTags={props.handleChangeTags}
                 tagsSelected={tagsSelected}
+                headingStyle={comonStyle}
             />
-            <BetweenDates title={titleDate} onChange={props.handleChangeDates}/>
-            <ControllerContent createPost={props.createPost} resetSearch={props.resetSearch}/>
+            <BetweenDates
+                title={titleDate}
+                onChange={props.handleChangeDates}
+                headerStyle={comonStyle}
+            />
+            <ControllerContent
+                createPost={props.createPost}
+                resetSearch={props.resetSearch}
+            />
         </SearchContent>
     );
 }
@@ -53,6 +61,13 @@ ManageSearchPage.propTypes = {
 
 const categoryStyle = {
     width: '50%'
+};
+
+const comonStyle={
+    fontSize: '15px',
+    display: 'inline',
+    marginRight:'8px',
+    fontWeight:'bold'
 };
 
 export default ManageSearchPage;

@@ -13,6 +13,11 @@ query getAllCommentByPost($post: JSON!){
 mutation addComment($data:CommentCreateInput){
     addComment(input:$data){
         _id
-        postId
+        createdAt
+        text
+        user{
+            firstname
+            lastname
+        }
     }
 }

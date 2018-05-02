@@ -8,7 +8,7 @@ const Option = Select.Option;
 
 function SelectCategory(props) {
 
-    const {css, listOfItems, placeholder,title} = props;
+    const {css, listOfItems, placeholder,title,headerStyle} = props;
 
     const renderOptions = () => {
         return listOfItems.map(category => (
@@ -18,7 +18,7 @@ function SelectCategory(props) {
 
     return (
         <Fragment>
-            <h6 style={headerStyle}>{title}</h6>
+            <label style={headerStyle}>{title}</label>
             <Select
                 mode="default"
                 size={"default"}
@@ -34,21 +34,16 @@ function SelectCategory(props) {
 
 SelectCategory.propTypes = {
     handleChange: PropTypes.func.isRequired,
-    css: PropTypes.object.isRequired,
+    css: PropTypes.object,
     listOfItems: PropTypes.array.isRequired,
     placeholder: PropTypes.string,
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    headerStyle:PropTypes.object
 };
 
 SelectCategory.defaultProps = {
-    placeholder: 'Select an item'
-};
-
-const headerStyle = {
-    fontSize: '12px',
-    marginRight: 8,
-    display: 'inline',
-    paddingTop: '5px'
+    placeholder: 'Select an item',
+    css:{width:'100%'}
 };
 
 export default SelectCategory;

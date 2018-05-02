@@ -7,7 +7,7 @@ function UserInfo(props) {
     return (
         <div style={css}>
             <Contact style={{fontSize: '20px', margin: '5px', paddingBottom: '5px'}}/>
-            User Name
+            Nea Ion
         </div>
     );
 }

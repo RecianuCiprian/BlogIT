@@ -6,10 +6,10 @@ import PropTypes from "prop-types";
 const CheckableTag = Tag.CheckableTag;
 
 export function Tags(props) {
-    const {listOfTags, title, tagsSelected} = props;
+    const {listOfTags, title, tagsSelected, headingStyle} = props;
     return (
         <Fragment>
-            <h6 style={headingStyle}>{title}</h6>
+            <label style={headingStyle}>{title}</label>
             {listOfTags.map(tag => (
                 <CheckableTag
                     key={tag._id}
@@ -27,11 +27,6 @@ Tags.propTypes = {
     listOfTags: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     tagsSelected: PropTypes.array.isRequired,
-    handleChangeTags: PropTypes.func.isRequired
-};
-
-const headingStyle = {
-    fontSize: '12px',
-    marginRight: 8,
-    display: 'inline'
+    handleChangeTags: PropTypes.func.isRequired,
+    headingStyle: PropTypes.object
 };

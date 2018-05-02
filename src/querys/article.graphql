@@ -1,3 +1,5 @@
+#am incercat cu fragmente dar nu merge sa le destructurez
+
 query getPosts($dataFilter:JSON!,$dataOptions:JSON!){
     posts(filters:$dataFilter,options:$dataOptions){
         _id
@@ -25,12 +27,41 @@ query getPosts($dataFilter:JSON!,$dataOptions:JSON!){
     }
 }
 
-query test($dataFilter:JSON!,$dataOptions:JSON!){
-    posts(filters:$dataFilter,options:$dataOptions){
+query getDataForSearch{
+    postCategories{
+        _id
+        name
+    }
+    tags{
+        _id
+        name
+    }
+}
+
+mutation addPost($data:PostCreateInput){
+    addPost(input:$data){
         _id
         title
-        userId
-        tagIds
+        description
+        createdAt
+        categoryId
+        user{
+            firstname
+            lastname
+        }
+        tags{
+            _id
+            name
+        }
+        category{
+            _id
+            name
+        }
+        comments{
+            _id
+            text
+            userId
+        }
     }
 }
 

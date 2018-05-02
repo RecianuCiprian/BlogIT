@@ -5,10 +5,10 @@ import PropTypes from "prop-types";
 const {RangePicker} = DatePicker;
 
 function BetweenDates(props) {
-    const {title} = props;
+    const {title,headerStyle} = props;
     return (
         <Fragment>
-            <h6 style={headerStyle}>{title}</h6>
+            <label style={headerStyle}>{title}</label>
             <RangePicker
                 size={'default'}
                 onChange={props.onChange}
@@ -19,14 +19,8 @@ function BetweenDates(props) {
 
 BetweenDates.propTypes = {
     title: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired
-};
-
-const headerStyle = {
-    fontSize: '12px',
-    marginRight: 8,
-    display: 'inline',
-    paddingTop: '5px'
+    onChange: PropTypes.func.isRequired,
+    headerStyle:PropTypes.object
 };
 
 export default BetweenDates;

@@ -9,6 +9,8 @@ export default function LoginReducers(state = initialState.user, action) {
                 user,
                 logIn:true
             };
+        case userConstants.LOG_OUT_SUCCESS:
+            return {};
         default:
             return state;
     }

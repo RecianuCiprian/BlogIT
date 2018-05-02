@@ -1,12 +1,15 @@
 import client from '../config/ApolloClient';
 import {userInfo} from '../querys/users.graphql';
-import {getPosts} from '../querys/article.graphql';
+import {addPost, getDataForSearch, getPosts} from '../querys/article.graphql';
 
 let users = JSON.parse(localStorage.getItem('user')) || [];
 
 export const sessionService = {
     login,
-    getAllPosts
+    getAllPosts,
+    getTagsCategory,
+    savePost,
+    logout
 };
 
 function login(email) {
@@ -19,12 +22,12 @@ function login(email) {
                 }
             }
         }).then(result => {
-            if(result.data.users.length === 0){
+            if (result.data.users.length === 0) {
                 reject("Invalid email address");
-            }else{
+            } else {
                 users.push(result.data.users[0]._id);
                 localStorage.setItem('user', JSON.stringify(users));
-                resolve({user:result.data.users[0]});
+                resolve({user: result.data.users[0]});
             }
         }).catch(err => {
             reject(err);
@@ -42,5 +45,44 @@ function getAllPosts(variables) {
         }).catch(err => {
             reject(err);
         });
+    });
+}
+
+function getTagsCategory() {
+    return new Promise((resolve, reject) => {
+        client.query({
+            query: getDataForSearch
+        }).then(result => {
+            resolve(result.data);
+        }).catch(err => {
+            reject(err);
+        });
+    });
+}
+
+function savePost(title, description, category, tags) {
+    let PostCreateInput = {
+        title: title,
+        description: description,
+        categoryId: category,
+        userId: JSON.parse(localStorage.getItem('user'))[0],
+        tagIds: tags
+    };
+    return new Promise((resolve, reject) => {
+        client.mutate({
+            mutation: addPost,
+            variables:{data:PostCreateInput}
+        }).then(result => {
+            resolve(result.data);
+        }).catch(err => {
+            reject(err);
+        });
+    });
+}
+
+function logout(){
+    return new Promise((resolve, reject) => {
+        localStorage.removeItem('user');
+        resolve();
     });
 }

@@ -5,8 +5,7 @@ import NavBar from "../navigation/NavBar";
 import ManageSearchPage from "../pageSearcy/ManageSearchPage";
 import ArticleManagement from "../articleContent/ArticleManagement";
 import PropTypes from 'prop-types';
-import {getPosts} from "../../querys/article.graphql";
-import {getDataForSearch} from "../../querys/searchPage.graphql";
+import {getPosts,getDataForSearch} from "../../querys/article.graphql";
 import CoolBlockUi from "../common/CoolBlockUi";
 import {Query} from "react-apollo/index";
 import {connect} from 'react-redux';
@@ -33,10 +32,6 @@ class HomePage extends Component {
 
     componentWillMount() {
         this.props.actions.getAllPosts(this.state.variables);
-    }
-
-    componentDidMount() {
-        document.body.classList = this.props.css['bg'];
     }
 
     loadMoreArticles = (e) => {
@@ -92,7 +87,6 @@ class HomePage extends Component {
     };
 
     createPost = () => {
-        debugger;
         history.push('/addCourse');
     };
 
@@ -102,8 +96,6 @@ class HomePage extends Component {
     };
 
     handleChangeDates = (dates, dateStrings) => {
-
-
         this.setState((prevState) => {
 
             let {variables} = prevState;
@@ -180,7 +172,7 @@ HomePage.propTypes = {
     actions: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     const {posts, error} = state.postsQueryData;
     return {
         posts,

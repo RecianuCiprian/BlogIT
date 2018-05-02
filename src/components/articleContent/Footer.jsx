@@ -11,7 +11,6 @@ import CommentsContent from "./CommentsContent";
 import AddCommentContainer from "./AddCommentContainer";
 import {Mutation} from "react-apollo";
 import {addComment} from '../../querys/comments.graphql';
-import {connect} from "react-redux";
 
 const Panel = Collapse.Panel;
 
@@ -37,7 +36,7 @@ class Footer extends Component {
         if (e.key.toLowerCase() === 'enter') {
             let CommentCreateInput = {
                 "text": this.state.value,
-                "userId": localStorage.getItem("user")[0],
+                "userId": JSON.parse(localStorage.getItem('user'))[0],
                 "postId": this.props.postId
             };
             console.info(CommentCreateInput);
@@ -76,7 +75,7 @@ class Footer extends Component {
                     <Panel showArrow={false} header={
                         <div className={css['footer-comment']}>
                             <Comment/>
-                            {comments.length}
+                            {comments ? comments.length:0}
                         </div>
                     } key={postId}>
                         <CommentsContent postId={postId} refresh={this.state.refresh}/>
@@ -93,8 +92,6 @@ class Footer extends Component {
                             />
                         )}
                     </Mutation>
-
-
                 </Collapse>
             </div>
         );
@@ -104,7 +101,7 @@ class Footer extends Component {
 Footer.propTypes = {
     css: PropTypes.object.isRequired,
     divCss: PropTypes.string,
-    comments: PropTypes.array.isRequired,
+    comments: PropTypes.array,
     postId: PropTypes.string.isRequired,
 };
 

@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from 'react-styleable';
-import css from '../common/style.scss';
+import css from './style.scss';
 
 function InsertArticleContainer(props) {
     const {css,children} = props;
     return (
         <div className={css['container']}>
-            {React.Children.map(children, (child) => {
-                return (<div className={css['div-container']}>
-                    {child}
-                </div>);
-            })}
+            <div className={css['container-inside']}>
+                {React.Children.map(children, (child) => {
+                    return (<div className={css['div-container']}>
+                        {child}
+                    </div>);
+                })}
+            </div>
         </div>
     );
 }

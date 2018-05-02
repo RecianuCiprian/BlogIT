@@ -28,7 +28,6 @@ class LoginPage extends Component {
 
     submitForm = (e) => {
         e.preventDefault();
-
         this.setState({submitted: true});
         const {email, password} = this.state;
         if (email && password) {
