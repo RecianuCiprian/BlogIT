@@ -25,7 +25,7 @@ class HomePage extends Component {
                 },
                 dataFilter: {}
             },
-            selectedTags: [],
+            selectedTags: []
         };
     }
 
@@ -89,6 +89,20 @@ class HomePage extends Component {
         });
     };
 
+    createPost = () => {
+
+    };
+
+    resetSearch = (refetch) => {
+        refetch();
+        this.setState({selectedTags: []});
+    };
+
+    handleChangeDates = () => {
+
+    };
+
+
     render() {
         const {posts} = this.props;
 
@@ -99,8 +113,10 @@ class HomePage extends Component {
                 <div className={this.props.css['container']}>
                     <Query
                         query={getDataForSearch}
+                        fetchPolicy={"cache-and-network"}
                     >
-                        {({loading, error, data}) => {
+                        {({loading, error, data, refetch}) => {
+                            debugger;
                             if (loading) return <CoolBlockUi loading={loading}/>;
                             if (error) return `Error! ${error.message}`;
                             return (
@@ -113,6 +129,13 @@ class HomePage extends Component {
                                     listOfCategories={data.postCategories}
                                     handleChangeCategory={this.handleChangeCategory}
                                     titleCategory={"Category:"}
+
+                                    titleDate={"Date Between:"}
+                                    handleChangeDates={this.handleChangeDates}
+
+                                    createPost={this.createPost}
+                                    // eslint-disable-next-line react/jsx-no-bind
+                                    resetSearch={this.resetSearch.bind(this,refetch)}
                                 />
                             );
                         }}

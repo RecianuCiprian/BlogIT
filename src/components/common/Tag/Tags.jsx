@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {Tag} from 'antd';
-import './categori.css';
+import './tag.css';
 import PropTypes from "prop-types";
 
 const CheckableTag = Tag.CheckableTag;

@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import {DatePicker} from 'antd';
 import 'antd/lib/date-picker/style/index.css';
-
+import PropTypes from "prop-types";
 const {RangePicker} = DatePicker;
 
 function onChange(dates, dateStrings) {
@@ -9,16 +9,22 @@ function onChange(dates, dateStrings) {
 }
 
 function BetweenDates(props) {
+    const {title} = props;
     return (
         <Fragment>
-            <h6 style={headerStyle}>Date Between:</h6>
+            <h6 style={headerStyle}>{title}</h6>
             <RangePicker
                 size={'default'}
-                onChange={onChange}
+                onChange={props.onChange}
             />
         </Fragment>
     );
 }
+
+BetweenDates.propTypes = {
+    title: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired
+};
 
 const headerStyle = {
     fontSize: '12px',
