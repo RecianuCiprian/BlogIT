@@ -9,14 +9,6 @@
   background-size: cover;
 }
 
-.container{
-  position: absolute;
-  margin-top:20px;
-  left: 50%;
-  width: 90%;
-  transform: translate(-50%);
-}
-
 .container-articles{
   composes: container-inside;
   position: relative;

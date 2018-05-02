@@ -7,9 +7,11 @@ import HomePage from "../homePage/HomePage";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import BlockUi from 'react-block-ui';
-import { Loader } from 'react-loaders';
+import {Loader} from 'react-loaders';
 import '../common/styles/blockUI.css';
 import 'loaders.css/loaders.min.css';
+import MainRoute from "./MainRoute";
+import ManageInsertArticle from "../insertArticle/ManageInsertArticle";
 
 class App extends Component {
 
@@ -20,13 +22,16 @@ class App extends Component {
     render() {
         const {loading} = this.props;
         return (
-            <BlockUi blocking={loading} loader={<Loader active type={'ball-spin-fade-loader'} color="#02a17c"/> }>
-                    <Router history={history}>
-                            <Switch>
-                                <PrivateRoute exact path="/" component={HomePage}/>
-                                <Route path="/login" component={LoginPage}/>
-                            </Switch>
-                    </Router>
+            <BlockUi blocking={loading} loader={<Loader active type={'ball-spin-fade-loader'} color="#02a17c"/>}>
+                <Router history={history}>
+                    <Switch>
+                        <Route path="/login" component={LoginPage}/>
+                        <MainRoute>
+                            <PrivateRoute exact path="/" component={HomePage}/>
+                            <PrivateRoute path="/addCourse" component={ManageInsertArticle}/>
+                        </MainRoute>
+                    </Switch>
+                </Router>
             </BlockUi>
         );
     }

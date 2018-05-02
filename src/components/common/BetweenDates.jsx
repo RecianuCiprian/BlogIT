@@ -4,10 +4,6 @@ import 'antd/lib/date-picker/style/index.css';
 import PropTypes from "prop-types";
 const {RangePicker} = DatePicker;
 
-function onChange(dates, dateStrings) {
-    console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
-}
-
 function BetweenDates(props) {
     const {title} = props;
     return (

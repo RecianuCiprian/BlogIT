@@ -12,6 +12,7 @@ import {Query} from "react-apollo/index";
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {postsActions} from "../../actions";
+import {history} from "../../store/ConfigureStore";
 
 class HomePage extends Component {
 
@@ -21,11 +22,12 @@ class HomePage extends Component {
             variables: {
                 dataOptions: {
                     skip: 0,
-                    limit: 5
+                    limit: 10
                 },
                 dataFilter: {}
             },
-            selectedTags: []
+            selectedTags: [],
+            dateBetween: []
         };
     }
 
@@ -53,7 +55,7 @@ class HomePage extends Component {
 
         this.setState((prevState) => {
 
-            let {variables} = prevState;
+            let {variables,dateBetween} = prevState;
             if (nextSelectedTags.length > 0) {
                 variables.dataFilter.tagIds = {
                     $in: nextSelectedTags
@@ -63,9 +65,9 @@ class HomePage extends Component {
             }
             variables.dataOptions = {
                 skip: 0,
-                limit: 5
+                limit: 10
             };
-            this.props.actions.filterPosts(variables);
+            this.props.actions.filterPosts(variables,dateBetween);
             return ({
                 selectedTags: nextSelectedTags,
                 variables: variables,
@@ -76,13 +78,13 @@ class HomePage extends Component {
     handleChangeCategory = (categoryId) => {
         this.setState((prevState) => {
 
-            let {variables} = prevState;
+            let {variables,dateBetween} = prevState;
             variables.dataFilter.categoryId = categoryId;
             variables.dataOptions = {
                 skip: 0,
-                limit: 5
+                limit: 10
             };
-            this.props.actions.filterPosts(variables);
+            this.props.actions.filterPosts(variables,dateBetween);
             return ({
                 variables: variables,
             });
@@ -90,7 +92,8 @@ class HomePage extends Component {
     };
 
     createPost = () => {
-
+        debugger;
+        history.push('/addCourse');
     };
 
     resetSearch = (refetch) => {
@@ -98,17 +101,35 @@ class HomePage extends Component {
         this.setState({selectedTags: []});
     };
 
-    handleChangeDates = () => {
+    handleChangeDates = (dates, dateStrings) => {
+
+
+        this.setState((prevState) => {
+
+            let {variables} = prevState;
+            variables.dataOptions = {
+                skip: 0,
+                limit: 10
+            };
+            let dateBetween = [];
+            dateBetween.push(new Date(dateStrings[0]).toISOString());
+            dateBetween.push(new Date(dateStrings[1]).toISOString());
+            this.props.actions.filterPosts(this.state.variables, dateBetween);
+            console.info('From: ', dateBetween[0], ', to: ', dateBetween[1]);
+            return ({
+                variables: variables,
+                dateBetween: dateBetween
+            });
+        });
+
 
     };
-
 
     render() {
         const {posts} = this.props;
 
         return (
             <Fragment>
-                <NavBar/>
 
                 <div className={this.props.css['container']}>
                     <Query
@@ -116,7 +137,6 @@ class HomePage extends Component {
                         fetchPolicy={"cache-and-network"}
                     >
                         {({loading, error, data, refetch}) => {
-                            debugger;
                             if (loading) return <CoolBlockUi loading={loading}/>;
                             if (error) return `Error! ${error.message}`;
                             return (
@@ -135,7 +155,7 @@ class HomePage extends Component {
 
                                     createPost={this.createPost}
                                     // eslint-disable-next-line react/jsx-no-bind
-                                    resetSearch={this.resetSearch.bind(this,refetch)}
+                                    resetSearch={this.resetSearch.bind(this, refetch)}
                                 />
                             );
                         }}
@@ -160,7 +180,7 @@ HomePage.propTypes = {
     actions: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     const {posts, error} = state.postsQueryData;
     return {
         posts,

@@ -1,5 +1,5 @@
 import React from 'react';
-import Content from "./SearcyContent";
+import SearchContent from "./SearchContent";
 // eslint-disable-next-line import/named
 import {Tags} from "../common/Tag";
 import Category from "../common/Category/Category";
@@ -15,7 +15,7 @@ function ManageSearchPage(props) {
     const {titleDate} = props;
 
     return (
-        <Content>
+        <SearchContent>
             <Category
                 handleChange={props.handleChangeCategory}
                 listOfItems={listOfCategories}
@@ -30,7 +30,7 @@ function ManageSearchPage(props) {
             />
             <BetweenDates title={titleDate} onChange={props.handleChangeDates}/>
             <ControllerContent createPost={props.createPost} resetSearch={props.resetSearch}/>
-        </Content>
+        </SearchContent>
     );
 }
 

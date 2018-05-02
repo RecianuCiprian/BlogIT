@@ -15,13 +15,13 @@ function ArticleManagement(props) {
                     post={post}
                 />
             ))}
-            <div style={centerDiv}>
+            {entries.length > 0 && (<div style={centerDiv}>
                 <Button
                     type="primary"
                     onClick={props.onLoadMore}
                     style={{width: '50%'}}
                 >Load More</Button>
-            </div>
+            </div>)}
         </Fragment>
     );
 }
