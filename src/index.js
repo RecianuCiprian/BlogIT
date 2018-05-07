@@ -1,4 +1,4 @@
-// Set up your application entry point here...
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux'; //face bind la store in app
