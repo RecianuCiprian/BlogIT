@@ -16,9 +16,6 @@ ReactDOM.render(
     <ApolloProvider client={client}>
         <Provider store={configureStore.store}>
             <App/>
-           {/* <PersistGate loading={null} persistor={configureStore.persistor}>
-                <App/>
-            </PersistGate>*/}
         </Provider>
     </ApolloProvider>,
     document.getElementById('app')
